@@ -1,0 +1,95 @@
+<form [formGroup]="formgrp" (ngSubmit)="onSubmit()">
+  <h2>Registration For Your Kids!</h2>
+  <hr />
+
+  <div>
+    <div class="control-row">
+      <div class="control">
+        <label for="PFirstName">Parent First Name</label>
+        <input
+          type="text"
+          id="PFirstName"
+          name="PFirstName"
+          formControlName="PFirstName" />
+          <div class="control-error" *ngIf="formgrp.get('PFirstName')?.touched && formgrp.get('PFirstName')?.invalid">
+        <small *ngIf="formgrp.get('PFirstName')?.errors?.['required']">First name is required</small>
+        <small *ngIf="formgrp.get('PFirstName')?.errors?.['pattern']">Only letters allowed</small>
+          </div>
+      </div>
+      <div class="control">
+        <label for="PLastName">Parent Last Name</label>
+        <input
+          type="text"
+          id="PLastName"
+          name="PLastName"
+          formControlName="PLastName"
+        /> 
+         <div class="control-error" *ngIf="formgrp.get('PLastName')?.touched && formgrp.get('PLastName')?.invalid">
+        <small *ngIf="formgrp.get('PLastName')?.errors?.['required']">Last name is required</small>
+        <small *ngIf="formgrp.get('PLastName')?.errors?.['pattern']">Only letters allowed</small>
+          </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+
+<div>
+    <div class="control-row">
+      <div class="control">
+        <label for="EmailID">Email</label>
+         <input id="EmailID" type="email" name="EmailID" formControlName="EmailID" />
+           <div class="control-error" *ngIf="formgrp.get('EmailID')?.touched && formgrp.get('EmailID')?.invalid">
+        <small *ngIf="formgrp.get('EmailID')?.errors?.['required']">EmailID is required</small>
+          </div>
+      </div>
+      <div class="control">
+       <div class="form-actionsotp">
+      <button type="submit" class="button-add"
+      style="display: contents;"> Verify OTP </button>
+    </div>
+    </div>
+      </div>
+  </div>
+ 
+   <div>
+    <div class="control-row">
+    <div class="control">
+        <label for="Phonenumber">Phonenumber</label>
+        <input
+          type="text"
+          id="Phonenumber"
+          name="Phonenumber"
+          formControlName="Phonenumber"
+        />
+          <div class="control-error" *ngIf="formgrp.get('Phonenumber')?.touched && formgrp.get('Phonenumber')?.invalid">
+        <small *ngIf="formgrp.get('Phonenumber')?.errors?.['required']">PhoneNumber is required</small>
+          </div>
+      </div>
+    </div>
+  </div>
+ <hr/>
+ <div>
+  <app-kidsdetails [formgrp]="formgrp"
+  [onPaymentSuccessFn]="onPaymentSuccess.bind(this)"></app-kidsdetails>
+  </div>
+  <hr/>
+  <div class="control-row">
+    <div class="control">
+      <label for="terms-and-conditions">
+        <input
+          type="checkbox"
+          id="terms-and-conditions"
+          name="terms"
+          required
+        />
+        I agree to the terms and conditions
+      </label>
+    </div>
+  </div>
+  <p class="form-actions">
+    <button type="reset" class="button button-flat">Reset</button>
+    <button type="submit" class="button-text" [disabled]="formgrp.invalid"
+>Sign up</button>
+  </p>
+</form>
+

@@ -1,0 +1,52 @@
+<h2>KIDS Details</h2>
+<div [formGroup]="formgrp">
+   <div formArrayName="kids"> 
+  <div *ngFor="let group of kids.controls; let i = index" [formGroupName]="i">
+    <div class="control-row">
+    <div class="control">
+  <label for="kidFirstName">kid Name</label>
+        <input
+          type="text"
+          id="kidFirstName"
+          name="kidFirstName"
+          formControlName="kidFirstName"
+        />
+        </div>
+        <div class="control">
+        <label for="Age">Age</label>
+        <input
+          type="text"
+          id="Age"
+          name="Age"
+          formControlName="Age"
+        />
+        </div>
+        <div class="control">
+           <label for="Gender">Gender</label>
+        <select formControlName="Gender"
+                    id="Gender" name="Gender">
+                    <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                     </select>
+                </div>
+        </div>
+        <div>
+         <button type="button" class="button"
+                         style="float:left;
+                         display: contents;" 
+                         (click)="deleteItems(i)">Remove</button>
+                         </div>
+      </div>
+      <div class="form-actions">
+       <button type="button" class="button-add"
+                style="display: contents;"
+                         (click)="generateKids()"> + Add Kids.. </button>
+        
+        </div>
+        </div>
+         <div >
+     <app-paymentmode [kidscount]="kidscount()"
+     [onPaymentSuccessFn]="onPaymentSuccessFn"></app-paymentmode>
+  </div>
+  </div>
+  
