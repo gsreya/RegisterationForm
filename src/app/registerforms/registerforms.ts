@@ -28,6 +28,8 @@ ngOnInit(){
   PLastName:new FormControl("",[Validators.required,Validators.pattern(/^[a-z A-Z]+$/)]),
   EmailID:new FormControl("",[Validators.required,Validators.email]),
   Phonenumber:new FormControl("",[Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
+  
+  agreeCond:new FormControl("",[Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
   kids: new FormArray<FormGroup>([])
 
  });

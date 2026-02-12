@@ -80,16 +80,18 @@
           type="checkbox"
           id="terms-and-conditions"
           name="terms"
-          required
+          formControlName="agreeCond"
         />
         I agree to the terms and conditions
       </label>
     </div>
   </div>
+   <div class="control-error" *ngIf="formgrp.get('agreeCond')?.touched && formgrp.get('agreeCond')?.invalid">
+        <small *ngIf="formgrp.get('agreeCond')?.errors?.['required']">please read and approve the Termconditions</small>
+          </div>
   <p class="form-actions">
     <button type="reset" class="button button-flat">Reset</button>
-    <button type="submit" class="button-text" [disabled]="formgrp.invalid"
->Sign up</button>
+    <button type="submit" class="button-text" >Sign up</button>
   </p>
 </form>
 

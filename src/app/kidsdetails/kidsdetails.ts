@@ -14,8 +14,6 @@ export class Kidsdetails {
    @Input() formgrp!: FormGroup;
 kidscount = signal(1);
 
-
-
  get kids(){
   return this.formgrp.get('kids') as FormArray<FormGroup> 
 }
@@ -27,15 +25,9 @@ this.kidscount.set(this.kids.length);
 generateKids() {
     this.kids.push(
       new FormGroup({
-        kidFirstName: new FormControl("", [
-          Validators.required,
-          Validators.pattern(/^[a-z A-Z]+$/)
-        ]),
-        Age: new FormControl("", [
-          Validators.required
-        ]),
+        kidFirstName: new FormControl("", [Validators.required,Validators.pattern(/^[a-z A-Z]+$/) ]),
+        Age: new FormControl("", [Validators.required]),
         Gender:new FormControl("",[Validators.required])
-
       })
     );
     this.kidscount.set(this.kids.length);

@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Googlesheets {
-   private scriptUrl = "GooglesheetID"
-    constructor(private http: HttpClient) {}
+   private scriptUrl = "https://script.google.com/macros/s/AKfycbxFjPM69yV25Wm-lknnkNHSTzvdkSWHfVTEht2eCI5KVMTuQyGQxdMJmfZeQ6bIwd-BDQ/exec"
+     constructor(private http: HttpClient) {}
 
 sendRegistration(data: any) {
   console.log("Sending to:", this.scriptUrl);

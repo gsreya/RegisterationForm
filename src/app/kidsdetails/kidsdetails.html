@@ -11,6 +11,10 @@
           name="kidFirstName"
           formControlName="kidFirstName"
         />
+        <div class="control-error" *ngIf="group.get('kidFirstName')?.touched && group.get('kidFirstName')?.invalid">
+        <small *ngIf="group.get('kidFirstName')?.errors?.['required']">kid name is required</small>
+        <small *ngIf="group.get('kidFirstName')?.errors?.['pattern']">Only letters allowed</small>
+          </div>
         </div>
         <div class="control">
         <label for="Age">Age</label>
@@ -19,7 +23,9 @@
           id="Age"
           name="Age"
           formControlName="Age"
-        />
+        /> <div class="control-error" *ngIf="group.get('Age')?.touched ">
+        <small *ngIf="group.get('Age')?.errors?.['required']">Age is required</small>
+          </div>
         </div>
         <div class="control">
            <label for="Gender">Gender</label>
@@ -28,6 +34,9 @@
                     <option value="Male">Male</option>
                       <option value="Female">Female</option>
                      </select>
+                     <div class="control-error" *ngIf="group.get('Gender')?.touched ">
+        <small *ngIf="group.get('Gender')?.errors?.['required']">Gender is required</small>
+          </div>
                 </div>
         </div>
         <div>
