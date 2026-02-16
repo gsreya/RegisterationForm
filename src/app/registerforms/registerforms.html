@@ -31,26 +31,6 @@
       </div>
     </div>
   </div>
-  <hr/>
-
-<div>
-    <div class="control-row">
-      <div class="control">
-        <label for="EmailID">Email</label>
-         <input id="EmailID" type="email" name="EmailID" formControlName="EmailID" />
-           <div class="control-error" *ngIf="formgrp.get('EmailID')?.touched && formgrp.get('EmailID')?.invalid">
-        <small *ngIf="formgrp.get('EmailID')?.errors?.['required']">EmailID is required</small>
-          </div>
-      </div>
-      <div class="control">
-       <div class="form-actionsotp">
-      <button type="submit" class="button-add"
-      style="display: contents;"> Verify OTP </button>
-    </div>
-    </div>
-      </div>
-  </div>
- 
    <div>
     <div class="control-row">
     <div class="control">
@@ -67,6 +47,53 @@
       </div>
     </div>
   </div>
+  <hr/>
+
+<div>
+    <div class="control-row">
+      <div class="control">
+        <label for="EmailID">Email</label>
+         <input id="EmailID" type="email" name="EmailID" formControlName="EmailID" />
+           <div class="control-error" *ngIf="formgrp.get('EmailID')?.touched && formgrp.get('EmailID')?.invalid">
+        <small *ngIf="formgrp.get('EmailID')?.errors?.['required']">EmailID is required</small>
+        <small *ngIf="formgrp.get('EmailID')?.errors?.['email']">
+          Please enter a valid email address
+        </small>
+
+          </div>
+      </div>
+      <div class="control">
+        <p>
+          <button type="button" class="button" (click)="verifyEmail()" 
+          [disabled]="formgrp.get('EmailID')?.invalid || !formgrp.get('EmailID')?.value"
+          [attr.aria-disabled]="formgrp.get('EmailID')?.invalid || !formgrp.get('EmailID')?.value"
+          >Verify your Email address</button>
+        </p>
+
+    </div>
+      </div>
+  </div>
+<div class="control-row">
+  <div class="control">
+    <ng-otp-input [config]="config" formControlName="code"></ng-otp-input>
+    @if (formgrp.get('code')?.touched && formgrp.get('code')?.hasError('invalidOtp')) {
+    <small class="error">Invalid OTP. Please try again.</small>
+    }
+  </div>
+
+
+  <!-- <label for="otp">OTP</label>
+    <input id="otp" type="email" name="otp" formControlName="otp" /> -->
+
+  <div class="control">
+    <p>
+      <button type="button" class="button" (click)="submitOtp()">Enter your OTP</button>
+    </p>
+  </div>
+</div>
+
+@if(isVerified){
+  <p>Email verified successfully!</p>
  <hr/>
  <div>
   <app-kidsdetails [formgrp]="formgrp"
@@ -87,11 +114,13 @@
     </div>
   </div>
    <div class="control-error" *ngIf="formgrp.get('agreeCond')?.touched && formgrp.get('agreeCond')?.invalid">
-        <small *ngIf="formgrp.get('agreeCond')?.errors?.['required']">please read and approve the Termconditions</small>
-          </div>
+    @if(formgrp.get('agreeCond')?.errors?.['required']){
+        <small>please read and approve the Termconditions</small>
+        }  </div>
   <p class="form-actions">
     <button type="reset" class="button button-flat">Reset</button>
-    <button type="submit" class="button-text" >Sign up</button>
+    <button type="submit" class="button" >Sign up</button>
   </p>
+}
 </form>
 

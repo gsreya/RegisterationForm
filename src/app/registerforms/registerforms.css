@@ -189,3 +189,12 @@ input.ng-invalid.ng-touched.ng-dirty{
   background-color: #f0490c;
   border-color:  #ea9902;
 }
+
+.button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  border-color: #aaaaaa;
+  opacity: 0.7;
+
+}
