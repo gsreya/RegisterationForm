@@ -168,8 +168,7 @@ hr {
 }
 .button:hover,
 .button:focus {
-  background-color: #f4563e;
-}
+background-color: #d48309;
 
 .button-flat {
   background-color: transparent;
