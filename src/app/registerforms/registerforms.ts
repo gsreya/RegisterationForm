@@ -6,6 +6,7 @@ import { Kidsdetails } from '../kidsdetails/kidsdetails';
 import { Googlesheets } from '../googlesheets';
 import { Router } from '@angular/router';
 import { NgOtpInputComponent} from 'ng-otp-input';
+import {MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -19,11 +20,41 @@ export class Registerforms implements OnInit {
   config = {
     length: 6,
     allowNumbersOnly: true,
-
+    inputStyles: {
+    width: '25px',
+    height: '25px',
+    'font-size': '10px',
+    'border': '1px solid #f4563e',
+  }
   }
   otpCode = '';
   isVerified: boolean = false;
+  showOtpButton:boolean = false;
 
+
+constructor(
+    private sheetService: Googlesheets,
+    private router:Router,
+    private snackBar:MatSnackBar,
+  ) {}
+  payload:any;
+ formgrp:FormGroup=new FormGroup({});
+
+  ngOnInit() {
+
+ this.formgrp=new FormGroup({
+  PFirstName:new FormControl("",[Validators.required,Validators.pattern(/^[a-z A-Z]+$/)]),
+  PLastName:new FormControl("",[Validators.required,Validators.pattern(/^[a-z A-Z]+$/)]),
+  EmailID:new FormControl("",[Validators.required,Validators.email]),
+  Phonenumber:new FormControl("",[Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
+  code: new FormControl<string>('', [Validators.required, Validators.minLength(6),Validators.maxLength(6)]),
+  agreeCond:new FormControl("",[Validators.required]),
+  kids: new FormArray<FormGroup>([])
+
+ });
+ this.addKid();
+  }
+  
   generate6DigitNumber() {
     this.otpCode = Math.floor(100000 + Math.random() * 9000).toString();;
     console.log(this.otpCode);
@@ -41,28 +72,6 @@ export class Registerforms implements OnInit {
 
     }
   }
-constructor(
-    private sheetService: Googlesheets,
-    private router:Router
-  ) {}
-  payload:any;
- formgrp:FormGroup=new FormGroup({});
-
-  ngOnInit() {
-
- this.formgrp=new FormGroup({
-  PFirstName:new FormControl("",[Validators.required,Validators.pattern(/^[a-z A-Z]+$/)]),
-  PLastName:new FormControl("",[Validators.required,Validators.pattern(/^[a-z A-Z]+$/)]),
-  EmailID:new FormControl("",[Validators.required,Validators.email]),
-  Phonenumber:new FormControl("",[Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
-  code: new FormControl<string>('', [Validators.required, Validators.minLength(6),Validators.maxLength(6)]),
-
-  agreeCond:new FormControl("",[Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
-  kids: new FormArray<FormGroup>([])
-
- });
- this.addKid();
-  }
   
   verifyEmail() {
     const emailCtrl = this.formgrp.get('EmailID');
@@ -72,8 +81,8 @@ constructor(
       emailCtrl?.updateValueAndValidity({ onlySelf: true });
       return;
     }
-
     else {
+      this.showOtpButton=true;
        this.generate6DigitNumber();}
   }
 get kids() {
@@ -101,17 +110,21 @@ get kids() {
  console.log("Form payment ", this.payload);
   }
 
-
-
 onSubmit() {
   if (this.formgrp.invalid) {
     this.formgrp.markAllAsTouched();
     return;
   }
   if (!this.payload) {
-    alert("Payment not completed yet");
-    return;
-  }
+  this.snackBar.open("Payment not yet completed", "OK", {
+    duration: 8000,
+    horizontalPosition: 'center',
+  verticalPosition: 'bottom',
+
+  });
+return;
+}
+
 
     this.sheetService.sendRegistration(this.payload).subscribe({
     next: (res) => {console.log("Google Sheets response:", res);

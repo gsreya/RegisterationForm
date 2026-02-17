@@ -5,6 +5,7 @@ import { Registerforms } from './registerforms/registerforms';
 
 @Component({
   selector: 'app-root',
+  standalone:true,
   imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'

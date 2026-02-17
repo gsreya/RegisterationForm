@@ -35,7 +35,7 @@ form {
 
 .control,
 fieldset {
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
 }
 
 .control.no-margin {
@@ -100,10 +100,9 @@ fieldset {
   flex-wrap: wrap;
   gap: 0.5rem;
   color: #e42a05;
-  height: 0.5rem;
-  padding: 0.25rem 0 0 0;
-  height: 1.5rem;
-  margin-bottom: 1rem;
+  height: auto;
+  padding: 0;
+  margin-bottom: 0.25rem;
 }
 
 .control-error p {
@@ -111,7 +110,7 @@ fieldset {
 }
 
 .control-row {
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -127,6 +126,11 @@ hr {
   border: 1px solid #121111;
 }
 
+p {
+color: #f4563e;
+font-family: sans-serif;
+font-size: medium;
+}
 .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -147,12 +151,21 @@ hr {
   cursor: pointer;
 }
 .button {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   font-size: 1rem;
   border-radius: 4px;
   background: #f4563e;
   border-color: #f4563e;
-  color: #f4563e;
+  color: #fff;
+  cursor: pointer;
+}
+.button-otp {
+  padding: 0.5rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  background: #f4563e;
+  border-color: #f4563e;
+  color: #fff;
   cursor: pointer;
 }
 .button-add {
