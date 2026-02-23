@@ -6,7 +6,6 @@ import { Kidsdetails } from '../kidsdetails/kidsdetails';
 import { Googlesheets } from '../googlesheets';
 import { Router } from '@angular/router';
 import { NgOtpInputComponent} from 'ng-otp-input';
-import {MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -35,7 +34,6 @@ export class Registerforms implements OnInit {
 constructor(
     private sheetService: Googlesheets,
     private router:Router,
-    private snackBar:MatSnackBar,
   ) {}
   payload:any;
  formgrp:FormGroup=new FormGroup({});
@@ -115,17 +113,6 @@ onSubmit() {
     this.formgrp.markAllAsTouched();
     return;
   }
-  if (!this.payload) {
-  this.snackBar.open("Payment not yet completed", "OK", {
-    duration: 8000,
-    horizontalPosition: 'center',
-  verticalPosition: 'bottom',
-
-  });
-return;
-}
-
-
     this.sheetService.sendRegistration(this.payload).subscribe({
     next: (res) => {console.log("Google Sheets response:", res);
       this.router.navigate(['/submitform'], {
