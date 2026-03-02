@@ -105,14 +105,6 @@ get kids() {
       PaymentStatus: paymentStatus,
       TransactionID: transactionId
     };
- console.log("Form payment ", this.payload);
-  }
-
-onSubmit() {
-  if (this.formgrp.invalid) {
-    this.formgrp.markAllAsTouched();
-    return;
-  }
     this.sheetService.sendRegistration(this.payload).subscribe({
     next: (res) => {console.log("Google Sheets response:", res);
       this.router.navigate(['/submitform'], {
@@ -123,9 +115,7 @@ onSubmit() {
 },
     error: (err) => console.error("Google Sheets error:", err)
   });
-
-  console.log("Form submitted", this.payload);
-}
-
+ console.log("Form payment ", this.payload);
+  }
 
 }
