@@ -12,3 +12,109 @@ header h1 {
   color: #130801;
   background-color: rgb(244, 168, 5);
 }
+
+.main-banner {
+  position: relative;
+  height: 150px;
+  background: url(/logo-bac-bg.png) center/cover no-repeat;
+  padding: 20px;
+}
+
+
+.overlay-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 40%;
+  height: auto;
+}
+
+
+.left {
+  left: 5%;
+}
+
+.center {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.right {
+  right: 5%;
+}
+
+
+@media (max-width: 992px) {
+  .overlay-img {
+    max-width: 35%;
+  }
+}
+
+.banner2 {
+  height: 50px;
+  background-image: url(/thoranam-bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;}
+
+
+.overlay-img1 {
+  margin-left: 50px;
+  width: 195px;
+  height: 114px;
+}
+
+.overlay-img2{
+  margin-top:21px;
+  width: 766px;
+  height: 114px;
+}
+.headertop-bg {
+  height:150px;
+  padding-top:30px;
+  background-color: #ff991a;
+
+}
+
+
+.side-images{
+  margin:0;
+  background:url(/arati-thoranam-left.png) left top no-repeat,
+             url(/arati-thoranam-right.png) right top no-repeat;
+  background-size: 150px 100%;           
+}
+
+
+@media (max-width: 768px) {
+  .main-banner {
+    height: auto;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .side-images {
+    background: none;
+  }
+
+  .overlay-img {
+    position: static;
+    transform: none;
+    max-width: 40%;
+  }
+  .center{
+    max-width:65%
+  }
+  .right {
+    display: none;
+  }
+}
+
+
+
+
+
+
