@@ -49,7 +49,7 @@ form {
 
 .control,
 fieldset {
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
 }
 
 .control.no-margin {
@@ -114,10 +114,9 @@ fieldset {
   flex-wrap: wrap;
   gap: 0.5rem;
   color: #e42a05;
-  height: 0.5rem;
-  padding: 0.25rem 0 0 0;
-  height: 1.5rem;
-  margin-bottom: 1rem;
+  height: auto;
+  padding: 0;
+  margin-bottom: 0.25rem;
 }
 
 .control-error p {

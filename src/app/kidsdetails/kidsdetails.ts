@@ -5,6 +5,7 @@ import { Paymentmode } from '../paymentmode/paymentmode';
 
 @Component({
   selector: 'app-kidsdetails',
+  standalone:true,
   imports: [CommonModule,FormsModule,ReactiveFormsModule,Paymentmode],
   templateUrl: './kidsdetails.html',
   styleUrl: './kidsdetails.css',
@@ -25,7 +26,7 @@ this.kidscount.set(this.kids.length);
 generateKids() {
     this.kids.push(
       new FormGroup({
-        kidFirstName: new FormControl("", [Validators.required,Validators.pattern(/^[a-z A-Z]+$/) ]),
+        kidFirstName: new FormControl("", [Validators.required,Validators.pattern('^[a-zA-Z]+$')]),
         Age: new FormControl("", [Validators.required]),
         Gender:new FormControl("",[Validators.required])
       })

@@ -1,7 +1,8 @@
 <h2>KIDS Details</h2>
 <div [formGroup]="formgrp">
    <div formArrayName="kids"> 
-  <div *ngFor="let group of kids.controls; let i = index" [formGroupName]="i">
+    @for(group of kids.controls; track $index){
+  <div [formGroupName]="$index">
     <div class="control-row">
     <div class="control">
   <label for="kidFirstName">kid Name</label>
@@ -11,9 +12,12 @@
           name="kidFirstName"
           formControlName="kidFirstName"
         />
-        <div class="control-error" *ngIf="group.get('kidFirstName')?.touched && group.get('kidFirstName')?.invalid">
-        <small *ngIf="group.get('kidFirstName')?.errors?.['required']">kid name is required</small>
-        <small *ngIf="group.get('kidFirstName')?.errors?.['pattern']">Only letters allowed</small>
+        <div class="control-error"> 
+          @if(group.get('kidFirstName')?.touched && group.get('kidFirstName')?.invalid){
+            @if(group.get('kidFirstName')?.errors?.['required']){
+        <small>kid name is required</small>}
+            @if(group.get('kidFirstName')?.errors?.['pattern']){
+        <small>Only letters allowed</small>}}
           </div>
         </div>
         <div class="control">
@@ -23,19 +27,24 @@
           id="Age"
           name="Age"
           formControlName="Age"
-        /> <div class="control-error" *ngIf="group.get('Age')?.touched ">
-        <small *ngIf="group.get('Age')?.errors?.['required']">Age is required</small>
+        /> <div class="control-error" >
+           @if(group.get('kidFirstName')?.touched ){
+            @if(group.get('kidFirstName')?.errors?.['required']){
+        <small>Age is required</small>}}
           </div>
         </div>
         <div class="control">
            <label for="Gender">Gender</label>
         <select formControlName="Gender"
                     id="Gender" name="Gender">
+                    <option value="select Option">Select Option</option>
                     <option value="Male">Male</option>
                       <option value="Female">Female</option>
                      </select>
-                     <div class="control-error" *ngIf="group.get('Gender')?.touched ">
-        <small *ngIf="group.get('Gender')?.errors?.['required']">Gender is required</small>
+                     <div class="control-error">
+                      @if(group.get('Gender')?.touched ){
+            @if(group.get('Gender')?.errors?.['required']){
+        <small>Gender is required</small>}}
           </div>
                 </div>
         </div>
@@ -43,9 +52,10 @@
          <button type="button" class="button"
                          style="float:left;
                          display: contents;" 
-                         (click)="deleteItems(i)">Remove</button>
+                         (click)="deleteItems($index)">Remove</button>
                          </div>
       </div>
+    }
       <div class="form-actions">
        <button type="button" class="button-add"
                 style="display: contents;"
